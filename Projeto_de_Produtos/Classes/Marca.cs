@@ -15,6 +15,15 @@ namespace Projeto_de_Produtos.Classes
 
         List<Marca> ListaMarcas = new List<Marca>();
 
+        public Marca (){
+            Console.WriteLine("Qual a marca do produto ??");
+            NameMarca = Console.ReadLine();
+        }
+        public Marca(string _nomeMarca){
+            NameMarca = _nomeMarca;
+
+        }
+
         public string Cadastrar(Marca marca)
         {
            ListaMarcas.Add(marca);

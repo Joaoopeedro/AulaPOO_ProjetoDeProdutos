@@ -7,17 +7,28 @@ namespace Projeto_de_Produtos.Classes
     public class Produto : Iproduto
     {
         private int Codigo { get; set; }
-        private string NameProduto { get; set; }
+        public string NameProduto { get; set; }
         private float Preco { get; set; }
         private DateTime DataCadastro { get; set; }
         private Marca Marca { get; set; }
         private Usuario CadastradoPor { get; set; }
-        private List<Produto> ListaDeProdutos { get; set; }
+        public List<Produto> ListaDeProdutos { get; set; }
 
-        List<Produto> ListaProduto = new List<Produto>();
+
+
+        public Produto()
+        {
+            ListaDeProdutos = new List<Produto>();
+        }
+        public Produto(string _nomeProduto)
+        {
+            NameProduto = _nomeProduto;
+
+        }
 
         public string Cadastrar(Produto produto)
         {
+            
             ListaDeProdutos.Add(produto);
             return "Produto cadastrado com sucesso!!";
         }
@@ -31,7 +42,7 @@ namespace Projeto_de_Produtos.Classes
         {
             ListaDeProdutos.Remove(produto);
             return "Produto removido com sucesso";
-            
+
         }
     }
 }
