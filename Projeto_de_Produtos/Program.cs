@@ -48,7 +48,7 @@ OQUE VOCÊ DESEJA REALIZAR
                         Console.WriteLine($"LISTA DE PRODUTOS");
                         foreach (Produto p2 in p.ListaDeProdutos)
                         {
-                            Console.WriteLine($"Nome: {p2.NameProduto} || ");
+                            Console.WriteLine($"Nome: {p2.NameProduto} ||| ");
                         }
 
                     }
