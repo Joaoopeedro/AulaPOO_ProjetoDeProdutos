@@ -23,7 +23,7 @@ namespace Projeto_de_Produtos.Classes
         public Produto(string _nomeProduto)
         {
             NameProduto = _nomeProduto;
-
+            
         }
 
         public string Cadastrar(Produto produto)
