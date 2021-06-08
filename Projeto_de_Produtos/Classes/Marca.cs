@@ -21,7 +21,7 @@ namespace Projeto_de_Produtos.Classes
         }
         public Marca(string _nomeMarca){
             NameMarca = _nomeMarca;
-
+            DataCadastro = DateTime.Now;
         }
 
         public string Cadastrar(Marca marca)
@@ -37,7 +37,7 @@ namespace Projeto_de_Produtos.Classes
 
         public string Deletar(Marca marca)
         {
-            ListaMarcas.Remove(marca);
+            ListaMarcas.RemoveAll(x => x.NameMarca == marca.NameMarca);
             return "Marca removida com sucesso!!";
         }
     }

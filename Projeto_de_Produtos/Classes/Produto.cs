@@ -40,7 +40,7 @@ namespace Projeto_de_Produtos.Classes
 
         public string Deletar(Produto produto)
         {
-            ListaDeProdutos.Remove(produto);
+            ListaDeProdutos.RemoveAll(x => x.NameProduto == produto.NameProduto);
             return "Produto removido com sucesso";
 
         }
