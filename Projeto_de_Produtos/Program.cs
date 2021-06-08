@@ -10,7 +10,7 @@ namespace Projeto_de_Produtos
         {
             int opcao;
             Produto p = new Produto();
-
+            
             do
             {
 
@@ -48,10 +48,25 @@ OQUE VOCÊ DESEJA REALIZAR
                         Console.WriteLine($"LISTA DE PRODUTOS");
                         foreach (Produto p2 in p.ListaDeProdutos)
                         {
-                            Console.WriteLine($"Nome: {p2.NameProduto} ||| ");
+                            Console.WriteLine($"Nome do Produto: {p2.NameProduto} || ");
                         }
 
                     }
+                }
+                else if (opcao == 3)
+                {
+                    Produto p3 = new Produto();
+                    Console.WriteLine("Qual produto você deseja deletar??");
+                    p3.NameProduto = Console.ReadLine();
+                    if (p3.NameProduto == p3.NameProduto)
+                    {
+                        Console.WriteLine(p.Deletar(p3));
+
+                    }else
+                    {
+                        Console.WriteLine("Produto inexistente");
+                    }
+                
                 }
 
             } while (opcao != 0);
