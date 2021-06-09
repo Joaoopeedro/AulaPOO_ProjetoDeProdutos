@@ -17,7 +17,7 @@ namespace Projeto_de_Produtos.Classes
 
         public Marca()
         {
-            Console.WriteLine("Qual o nome da marca  ??");
+            // Console.WriteLine("Qual o nome da marca  ??");
             NameMarca = Console.ReadLine();
         }
         public Marca(string _nomeMarca)
