@@ -34,6 +34,20 @@ namespace Projeto_de_Produtos.Classes
 
         public List<Marca> Listar()
         {
+            if (ListaMarcas.Count > 0)
+            {
+                foreach (Marca m2 in ListaMarcas)
+                {
+                    Console.WriteLine("LISTA DE MARCAS");
+                    Console.WriteLine($@"
+ 
+[NOME MARCA]: { m2.NameMarca}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Não há nenhum item na lista");
+            }
             return ListaMarcas;
         }
 
