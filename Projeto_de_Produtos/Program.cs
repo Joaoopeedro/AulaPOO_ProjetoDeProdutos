@@ -58,7 +58,7 @@ OQUE VOCÊ DESEJA REALIZAR
                         foreach (Produto p2 in p.ListaDeProdutos)
                         {
                             Console.WriteLine($"Nome do Produto: {p2.NameProduto} | ");
-                        }
+                        }                                                                                   
 
                     }
                 }
