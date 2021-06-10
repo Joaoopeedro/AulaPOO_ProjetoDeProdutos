@@ -29,7 +29,7 @@ O QUE VOCÊ DESEJA REALIZAR?
 3- DESLOGAR
 4- CADASTRAR MARCA
 5- LISTAR MARCAS
-6- DESLOGAR MARCAS
+6- DELETAR MARCAS
 7- CADASTRAR PRODUTO
 8- LISTAR PRODUTO
 9- DELETAR PRODUTO
@@ -39,8 +39,17 @@ O QUE VOCÊ DESEJA REALIZAR?
 
                 switch (opcao)
                 {
+
                     case 1:
-                        Console.WriteLine(u.Cadastrar());
+                        if (m.ListaMarcas.Count > 0)
+                        {
+                            Console.WriteLine(u.Cadastrar());
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Você não tem nenhuma marca cadastrada. Cadastre uma marca antes de cadastrar um produto");
+                        }
 
                         break;
 
@@ -75,6 +84,10 @@ O QUE VOCÊ DESEJA REALIZAR?
                         break;
 
                     case 4:
+                        Marca m1 = new Marca();
+                        Console.WriteLine("Qual o nome da marca? ");
+                        m1.NameMarca = Console.ReadLine();
+                        Console.WriteLine(m.Cadastrar(m1));
 
 
 
@@ -82,21 +95,64 @@ O QUE VOCÊ DESEJA REALIZAR?
 
                     case 5:
 
+                        m.Listar();
+
                         break;
 
                     case 6:
+                        Marca m3 = new Marca();
+                        Console.WriteLine("Qual marca você deseja deletar? ");
+                        m3.NameMarca = Console.ReadLine();
+                        Console.WriteLine(m.Deletar(m3));
+
 
                         break;
 
                     case 7:
 
+                        Produto p2 = new Produto();
+                        Console.WriteLine("Qual é o Produto ??");
+                        p2.NameProduto = Console.ReadLine();
+                        do
+                        {
+
+
+                            Console.WriteLine("Qual  marca do produto ??");
+                            string marcaProduto = Console.ReadLine();
+                            p2.Marca = m.ListaMarcas.Find(x => x.NameMarca == marcaProduto);
+                        } while (p2.Marca == null);
+                        Console.WriteLine(p.Cadastrar(p2));
+
+
                         break;
 
                     case 8:
 
+                        Console.WriteLine(p.ListaDeProdutos.Count);
+                        if (p.ListaDeProdutos.Count <= 0)
+                        {
+                            Console.WriteLine("Sua lista esta vazia!!!");
+                        }
+                        else
+                        {
+
+                            Console.WriteLine($"LISTA DE PRODUTOS");
+                            foreach (Produto np in p.ListaDeProdutos)
+                            {
+                                Console.WriteLine($"Nome do Produto: {np.NameProduto} | ");
+                            }
+
+                        }
+
                         break;
 
                     case 9:
+
+                        Produto p3 = new Produto();
+                        
+                        Console.WriteLine("Qual produto você deseja deletar??");
+                        p3.NameProduto = Console.ReadLine();
+                        Console.WriteLine(p.Deletar(p3));
 
                         break;
 
