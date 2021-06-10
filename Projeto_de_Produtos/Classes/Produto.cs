@@ -8,11 +8,12 @@ namespace Projeto_de_Produtos.Classes
     {
         private int Codigo { get; set; }
         public string NameProduto { get; set; }
-        private float Preco { get; set; }
+        public float Preco { get; set; }
         private DateTime DataCadastro { get; set; }
         public Marca Marca { get; set; }
-        private Usuario CadastradoPor { get; set; }
+        public Usuario CadastradoPor { get; set; }
         public List<Produto> ListaDeProdutos { get; set; }
+
 
 
 

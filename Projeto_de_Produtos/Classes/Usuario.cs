@@ -13,6 +13,8 @@ namespace Projeto_de_Produtos.Classes
         public string Senha { get; set; }
 
         public DateTime DataDeCadastro { get; set; }= DateTime.Now;
+
+        
         
         
 

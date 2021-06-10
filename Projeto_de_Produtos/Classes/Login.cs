@@ -11,9 +11,10 @@ namespace Projeto_de_Produtos.Classes
             Usuario u = new Usuario();
             Produto p = new Produto();
             Marca m = new Marca();
-            bool checar = true;
+            
             int opcao;
             int opcao2;
+            Usuario usuarioEncontrado = null;
 
             do
             {
@@ -55,38 +56,36 @@ namespace Projeto_de_Produtos.Classes
 
                         break;
                     case 2:
-                        do
+
+                        Console.WriteLine("Digite seu email: ");
+                        string emailLogar = Console.ReadLine().ToLower();
+                        Console.WriteLine("Digite sua senha: ");
+                        string senhaLogar = Console.ReadLine();
+                        usuarioEncontrado = u.ListaUsuario.Find(x => x.Email == emailLogar && x.Senha == senhaLogar);
+                        if (usuarioEncontrado != null)
                         {
 
-                            Console.WriteLine("Digite seu email: ");
-                            string emailLogar = Console.ReadLine().ToLower();
-                            Console.WriteLine("Digite sua senha: ");
-                            string senhaLogar = Console.ReadLine();
-                            Usuario usuarioEncontrado = u.ListaUsuario.Find(x => x.Email == emailLogar && x.Senha == senhaLogar);
-                            if (usuarioEncontrado != null)
-                            {
-                                
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine(Logar(u));
-                                Console.ResetColor();
-                                checar = false;
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine(Logar(u));
+                            Console.ResetColor();
+                            
 
-                            }
+                        }
 
-                            else
-                            {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine("Email ou senha incorretos");
-                                Console.ResetColor();
-                            }
-                        } while (checar == true);
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Email ou senha incorretos");
+                            Console.ResetColor();
+                        }
+
                         break;
                     default:
                         Console.WriteLine("Opção invalida");
 
                         break;
                 }
-            } while (opcao2 !=2);
+            } while (usuarioEncontrado == null);
 
 
             do
@@ -147,14 +146,25 @@ O QUE VOCÊ DESEJA REALIZAR?
                             Produto p2 = new Produto();
                             Console.WriteLine("Qual é o Produto? ");
                             p2.NameProduto = Console.ReadLine();
+                            Console.WriteLine("Qual o valor do produto?");
+                            p2.Preco = float.Parse(Console.ReadLine());
                             do
                             {
-
-
                                 Console.WriteLine("Qual  marca do produto? ");
                                 string marcaProduto = Console.ReadLine();
                                 p2.Marca = m.ListaMarcas.Find(x => x.NameMarca == marcaProduto);
+                                if (p2.Marca == null)
+                                {
+                                    Console.WriteLine("Essa marca nao foi cadastrada");
+                                    Console.WriteLine("MARCAS DISPONIVEIS!");
+                                    foreach (Marca item in m.ListaMarcas)
+                                    {
+                                        Console.WriteLine(item.NameMarca);
+                                    }
+
+                                }
                             } while (p2.Marca == null);
+                            p2.CadastradoPor = usuarioEncontrado;
                             Console.WriteLine(p.Cadastrar(p2));
 
                         }
@@ -171,10 +181,12 @@ O QUE VOCÊ DESEJA REALIZAR?
 
                     case 5:
 
-                        Console.WriteLine(p.ListaDeProdutos.Count);
+                        
                         if (p.ListaDeProdutos.Count <= 0)
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Sua lista esta vazia!!!");
+                            Console.ResetColor();
                         }
                         else
                         {
@@ -182,7 +194,7 @@ O QUE VOCÊ DESEJA REALIZAR?
                             Console.WriteLine($"LISTA DE PRODUTOS");
                             foreach (Produto np in p.ListaDeProdutos)
                             {
-                                Console.WriteLine($"Nome do Produto: {np.NameProduto} | ");
+                                Console.WriteLine($"Nome do Produto: {np.NameProduto} | Marca: {np.Marca.NameMarca} | Preço: {np.Preco:C2}| Usuario: {np.CadastradoPor.Nome} ");
                             }
 
                         }
