@@ -41,7 +41,16 @@ O QUE VOCÊ DESEJA REALIZAR?
                 {
 
                     case 1:
-                        Console.WriteLine(u.Cadastrar());
+                        if (u.usuario.Count == 0)
+                        {
+                            Console.WriteLine(u.Cadastrar());
+
+                        }
+
+                        else
+                        {
+                            Console.WriteLine("Você já esta cadastrado! ");
+                        }
 
 
                         break;
@@ -105,13 +114,13 @@ O QUE VOCÊ DESEJA REALIZAR?
                         if (m.ListaMarcas.Count > 0)
                         {
                             Produto p2 = new Produto();
-                            Console.WriteLine("Qual é o Produto ??");
+                            Console.WriteLine("Qual é o Produto? ");
                             p2.NameProduto = Console.ReadLine();
                             do
                             {
 
 
-                                Console.WriteLine("Qual  marca do produto ??");
+                                Console.WriteLine("Qual  marca do produto? ");
                                 string marcaProduto = Console.ReadLine();
                                 p2.Marca = m.ListaMarcas.Find(x => x.NameMarca == marcaProduto);
                             } while (p2.Marca == null);
@@ -120,7 +129,7 @@ O QUE VOCÊ DESEJA REALIZAR?
                         }
                         else
                         {
-                            Console.WriteLine("Você não tem nenhuma marca cadastrada. Cadastre uma marca antes de cadastrar um produto");
+                            Console.WriteLine("Você não tem nenhuma marca cadastrada. Cadastre uma marca antes de cadastrar um produto ");
                         }
 
 
