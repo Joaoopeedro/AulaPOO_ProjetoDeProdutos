@@ -4,7 +4,7 @@ namespace Projeto_de_Produtos.Interfaces
 {
     public interface Iusuario
     {
-        string Cadastrar();
+        string Cadastrar(Usuario usuario);
         string Deletar(Usuario usuario);
 
 

@@ -12,49 +12,48 @@ namespace Projeto_de_Produtos.Classes
             Produto p = new Produto();
             Marca m = new Marca();
             bool checar = true;
-
-
             int opcao;
+            int opcao2;
+
             do
             {
 
 
-
-                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine($@"
-O QUE VOCÊ DESEJA REALIZAR?
+{u.DataDeCadastro}
+===================
+| MENU DE CADASTRO|
 
 1- CADASTRAR USUARIO
 2- FAZER LOGIN
-3- DESLOGAR
-4- CADASTRAR MARCA
-5- LISTAR MARCAS
-6- DELETAR MARCAS
-7- CADASTRAR PRODUTO
-8- LISTAR PRODUTO
-9- DELETAR PRODUTO
 ");
                 Console.ResetColor();
-                opcao = int.Parse(Console.ReadLine());
-
-                switch (opcao)
+                opcao2 = int.Parse(Console.ReadLine());
+                switch (opcao2)
                 {
-
                     case 1:
-                        if (u.usuario.Count == 0)
+                        if (u.ListaUsuario.Count == 0)
                         {
-                            Console.WriteLine(u.Cadastrar());
+                            Usuario cadastroUsuario = new Usuario();
+                            Console.WriteLine("Digite seu nome");
+                            cadastroUsuario.Nome = Console.ReadLine();
+                            Console.WriteLine("Digite seu email");
+                            cadastroUsuario.Email = Console.ReadLine();
+                            Console.WriteLine("Digite sea senha");
+                            cadastroUsuario.Senha = Console.ReadLine();
+                            Console.WriteLine(u.Cadastrar(cadastroUsuario));
 
                         }
 
                         else
                         {
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
                             Console.WriteLine("Você já esta cadastrado! ");
+                            Console.ResetColor();
                         }
 
-
                         break;
-
                     case 2:
                         do
                         {
@@ -63,29 +62,61 @@ O QUE VOCÊ DESEJA REALIZAR?
                             string emailLogar = Console.ReadLine().ToLower();
                             Console.WriteLine("Digite sua senha: ");
                             string senhaLogar = Console.ReadLine();
-                            if (u.usuario.Find(x => x.Email == emailLogar).Senha == senhaLogar)
+                            Usuario usuarioEncontrado = u.ListaUsuario.Find(x => x.Email == emailLogar && x.Senha == senhaLogar);
+                            if (usuarioEncontrado != null)
                             {
+                                
+                                Console.ForegroundColor = ConsoleColor.Green;
                                 Console.WriteLine(Logar(u));
+                                Console.ResetColor();
                                 checar = false;
 
                             }
 
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Email ou senha incorretos");
+                                Console.ResetColor();
                             }
                         } while (checar == true);
-                        checar = true;
-
+                        break;
+                    default:
+                        Console.WriteLine("Opção invalida");
 
                         break;
+                }
+            } while (opcao2 !=2);
 
-                    case 3:
-                        Console.WriteLine(Deslogar());
 
-                        break;
+            do
+            {
 
-                    case 4:
+
+
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($@"
+{u.DataDeCadastro}1
+
+===========================
+O QUE VOCÊ DESEJA REALIZAR?
+
+
+1- CADASTRAR MARCA
+2- LISTAR MARCAS
+3- DELETAR MARCAS
+4- CADASTRAR PRODUTO
+5- LISTAR PRODUTO
+6- DELETAR PRODUTO
+7- DESLOGAR
+");
+                Console.ResetColor();
+                opcao = int.Parse(Console.ReadLine());
+
+                switch (opcao)
+                {
+
+                    case 1:
                         Marca m1 = new Marca();
                         Console.WriteLine("Qual o nome da marca? ");
                         m1.NameMarca = Console.ReadLine();
@@ -95,13 +126,13 @@ O QUE VOCÊ DESEJA REALIZAR?
 
                         break;
 
-                    case 5:
+                    case 2:
 
                         m.Listar();
 
                         break;
 
-                    case 6:
+                    case 3:
                         Marca m3 = new Marca();
                         Console.WriteLine("Qual marca você deseja deletar? ");
                         m3.NameMarca = Console.ReadLine();
@@ -110,7 +141,7 @@ O QUE VOCÊ DESEJA REALIZAR?
 
                         break;
 
-                    case 7:
+                    case 4:
                         if (m.ListaMarcas.Count > 0)
                         {
                             Produto p2 = new Produto();
@@ -129,14 +160,16 @@ O QUE VOCÊ DESEJA REALIZAR?
                         }
                         else
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Você não tem nenhuma marca cadastrada. Cadastre uma marca antes de cadastrar um produto ");
+                            Console.ResetColor();
                         }
 
 
 
                         break;
 
-                    case 8:
+                    case 5:
 
                         Console.WriteLine(p.ListaDeProdutos.Count);
                         if (p.ListaDeProdutos.Count <= 0)
@@ -156,7 +189,7 @@ O QUE VOCÊ DESEJA REALIZAR?
 
                         break;
 
-                    case 9:
+                    case 6:
 
                         Produto p3 = new Produto();
 
@@ -165,18 +198,24 @@ O QUE VOCÊ DESEJA REALIZAR?
                         Console.WriteLine(p.Deletar(p3));
 
                         break;
+                    case 7:
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(Deslogar());
+                        Console.ResetColor();
+
+                        break;
 
                     default:
                         Console.WriteLine("Opção invalida");
                         break;
                 }
-            } while (opcao != 3);
+            } while (opcao != 7);
 
         }
 
         public string Deslogar()
         {
-            return "Você foi deslogado";
+            return "Você foi deslogado!";
         }
 
         public string Logar(Usuario usuario)

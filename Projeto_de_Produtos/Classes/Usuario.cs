@@ -8,26 +8,21 @@ namespace Projeto_de_Produtos.Classes
     {
         private int Codigo { get; set; }=1;
 
-        private string Nome { get; set; }
+        public string Nome { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
 
-        private DateTime DataDeCadastro { get; set; }
+        public DateTime DataDeCadastro { get; set; }= DateTime.Now;
+        
+        
 
-        public List<Usuario> usuario = new List<Usuario>();
+        public List<Usuario> ListaUsuario = new List<Usuario>();
 
-        public string Cadastrar()
+        public string Cadastrar(Usuario usuario)
         {
-           Console.WriteLine("Digite seu nome");
-           string nickname = Console.ReadLine();
-           Nome=nickname;
-           Console.WriteLine("Digite seu email");
-           string EmailDeUsuario = Console.ReadLine();
-           Email=EmailDeUsuario;
-           Console.WriteLine("Digite sea senha");
-           string senhaDeUsuario = Console.ReadLine();
-           Senha=senhaDeUsuario;
-           return "Cadastro feito com sucesso!!! ";
+          ListaUsuario.Add(usuario);
+           
+          return "Cadastro feito com sucesso!!! ";
         }
 
         public string Deletar(Usuario usuario)

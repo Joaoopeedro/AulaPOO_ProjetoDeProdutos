@@ -39,14 +39,15 @@ namespace Projeto_de_Produtos.Classes
                 Console.WriteLine("LISTA DE MARCAS");
                 foreach (Marca m2 in ListaMarcas)
                 {
-                    Console.WriteLine($@"
- 
+                    Console.WriteLine($@" 
 [NOME MARCA]: { m2.NameMarca}");
                 }
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Não há nenhum item na lista");
+                Console.ResetColor();
             }
             return ListaMarcas;
         }
@@ -62,7 +63,9 @@ namespace Projeto_de_Produtos.Classes
             }
             else
             {
+                
                 return "Marca inexistente";
+                
             }
         }
     }
