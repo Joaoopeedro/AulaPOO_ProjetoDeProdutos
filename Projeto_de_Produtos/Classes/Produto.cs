@@ -10,7 +10,7 @@ namespace Projeto_de_Produtos.Classes
         public string NameProduto { get; set; }
         private float Preco { get; set; }
         private DateTime DataCadastro { get; set; }
-        private Marca Marca { get; set; }
+        public Marca Marca { get; set; }
         private Usuario CadastradoPor { get; set; }
         public List<Produto> ListaDeProdutos { get; set; }
 
@@ -23,12 +23,12 @@ namespace Projeto_de_Produtos.Classes
         public Produto(string _nomeProduto)
         {
             NameProduto = _nomeProduto;
-            
+
         }
 
         public string Cadastrar(Produto produto)
         {
-            
+
             ListaDeProdutos.Add(produto);
             return "Produto cadastrado com sucesso!!";
         }
@@ -40,8 +40,17 @@ namespace Projeto_de_Produtos.Classes
 
         public string Deletar(Produto produto)
         {
-            ListaDeProdutos.RemoveAll(x => x.NameProduto == produto.NameProduto);
-            return "Produto removido com sucesso";
+
+            int produtoDeletado = ListaDeProdutos.RemoveAll(x => x.NameProduto == produto.NameProduto);
+            if (produtoDeletado == 1)
+            {
+                return "Produto removido com sucesso!!";
+
+            }else
+            {
+                return "Produto inexistente!!";
+                
+            }
 
         }
     }

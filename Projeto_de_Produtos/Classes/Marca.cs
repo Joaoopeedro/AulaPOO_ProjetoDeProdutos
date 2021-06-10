@@ -8,37 +8,61 @@ namespace Projeto_de_Produtos.Classes
     {
         private int Codigo { get; set; }
 
-        public string NameMarca { get;  set; }
+        public string NameMarca { get; set; }
 
         public DateTime DataCadastro { get; set; }
 
 
-        List<Marca> ListaMarcas = new List<Marca>();
+        public List<Marca> ListaMarcas = new List<Marca>();
 
-        public Marca (){
-            Console.WriteLine("Qual a marca do produto ??");
+        public Marca()
+        {
+            // Console.WriteLine("Qual o nome da marca  ??");
             NameMarca = Console.ReadLine();
         }
-        public Marca(string _nomeMarca){
+        public Marca(string _nomeMarca)
+        {
             NameMarca = _nomeMarca;
             DataCadastro = DateTime.Now;
         }
 
         public string Cadastrar(Marca marca)
         {
-           ListaMarcas.Add(marca);
-           return "Marca cadastrada com sucesso!!";
+            ListaMarcas.Add(marca);
+            return "Marca cadastrada com sucesso!!";
         }
 
         public List<Marca> Listar()
         {
+            if (ListaMarcas.Count > 0)
+            {
+                foreach (Marca m2 in ListaMarcas)
+                {
+                    Console.WriteLine("LISTA DE MARCAS");
+                    Console.WriteLine($@"
+ 
+[NOME MARCA]: { m2.NameMarca}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Não há nenhum item na lista");
+            }
             return ListaMarcas;
         }
 
         public string Deletar(Marca marca)
         {
-            ListaMarcas.RemoveAll(x => x.NameMarca == marca.NameMarca);
-            return "Marca removida com sucesso!!";
+
+            int marcaDeletado = ListaMarcas.RemoveAll(x => x.NameMarca == marca.NameMarca);
+            if (marcaDeletado == 1)
+            {
+
+                return "Marca removida com sucesso!!";
+            }
+            else{
+                return "Marca inexistente";
+            }
         }
     }
 }

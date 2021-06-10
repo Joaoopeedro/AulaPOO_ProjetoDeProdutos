@@ -10,7 +10,8 @@ namespace Projeto_de_Produtos
         {
             int opcao;
             Produto p = new Produto();
-            
+            Marca m = new Marca();
+
             do
             {
 
@@ -27,10 +28,18 @@ OQUE VOCÊ DESEJA REALIZAR
 
                 if (opcao == 1)
                 {
-                    Produto p2 = new Produto();
 
+                    Produto p2 = new Produto();
                     Console.WriteLine("Qual é o Produto ??");
                     p2.NameProduto = Console.ReadLine();
+                    do
+                    {
+
+
+                        Console.WriteLine("Qual  marca do produto ??");
+                        string marcaProduto = Console.ReadLine();
+                        p2.Marca = m.ListaMarcas.Find(x => x.NameMarca == marcaProduto);
+                    } while (p2.Marca == null);
                     Console.WriteLine(p.Cadastrar(p2));
 
 
@@ -48,7 +57,7 @@ OQUE VOCÊ DESEJA REALIZAR
                         Console.WriteLine($"LISTA DE PRODUTOS");
                         foreach (Produto p2 in p.ListaDeProdutos)
                         {
-                            Console.WriteLine($"Nome do Produto: {p2.NameProduto} || ");
+                            Console.WriteLine($"Nome do Produto: {p2.NameProduto} | ");
                         }
 
                     }
@@ -56,17 +65,11 @@ OQUE VOCÊ DESEJA REALIZAR
                 else if (opcao == 3)
                 {
                     Produto p3 = new Produto();
+                    Produto p2 = new Produto();
                     Console.WriteLine("Qual produto você deseja deletar??");
                     p3.NameProduto = Console.ReadLine();
-                    if (p3.NameProduto == p3.NameProduto)
-                    {
-                        Console.WriteLine(p.Deletar(p3));
+                    Console.WriteLine(p.Deletar(p3));
 
-                    }else
-                    {
-                        Console.WriteLine("Produto inexistente");
-                    }
-                
                 }
 
             } while (opcao != 0);
