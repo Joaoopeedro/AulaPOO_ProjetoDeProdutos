@@ -18,7 +18,7 @@ namespace Projeto_de_Produtos.Classes
         public Marca()
         {
             // Console.WriteLine("Qual o nome da marca  ??");
-            
+
         }
         public Marca(string _nomeMarca)
         {
@@ -36,9 +36,9 @@ namespace Projeto_de_Produtos.Classes
         {
             if (ListaMarcas.Count > 0)
             {
+                Console.WriteLine("LISTA DE MARCAS");
                 foreach (Marca m2 in ListaMarcas)
                 {
-                    Console.WriteLine("LISTA DE MARCAS");
                     Console.WriteLine($@"
  
 [NOME MARCA]: { m2.NameMarca}");
@@ -60,7 +60,8 @@ namespace Projeto_de_Produtos.Classes
 
                 return "Marca removida com sucesso!!";
             }
-            else{
+            else
+            {
                 return "Marca inexistente";
             }
         }

@@ -8,7 +8,7 @@ namespace Projeto_de_Produtos
     {
         static void Main(string[] args)
         {
-            
+            Login li = new Login();
         }
     }
 }
