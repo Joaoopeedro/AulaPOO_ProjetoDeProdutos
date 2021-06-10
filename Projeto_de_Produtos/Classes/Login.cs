@@ -41,15 +41,8 @@ O QUE VOCÊ DESEJA REALIZAR?
                 {
 
                     case 1:
-                        if (m.ListaMarcas.Count > 0)
-                        {
-                            Console.WriteLine(u.Cadastrar());
+                        Console.WriteLine(u.Cadastrar());
 
-                        }
-                        else
-                        {
-                            Console.WriteLine("Você não tem nenhuma marca cadastrada. Cadastre uma marca antes de cadastrar um produto");
-                        }
 
                         break;
 
@@ -109,19 +102,27 @@ O QUE VOCÊ DESEJA REALIZAR?
                         break;
 
                     case 7:
-
-                        Produto p2 = new Produto();
-                        Console.WriteLine("Qual é o Produto ??");
-                        p2.NameProduto = Console.ReadLine();
-                        do
+                        if (m.ListaMarcas.Count > 0)
                         {
+                            Produto p2 = new Produto();
+                            Console.WriteLine("Qual é o Produto ??");
+                            p2.NameProduto = Console.ReadLine();
+                            do
+                            {
 
 
-                            Console.WriteLine("Qual  marca do produto ??");
-                            string marcaProduto = Console.ReadLine();
-                            p2.Marca = m.ListaMarcas.Find(x => x.NameMarca == marcaProduto);
-                        } while (p2.Marca == null);
-                        Console.WriteLine(p.Cadastrar(p2));
+                                Console.WriteLine("Qual  marca do produto ??");
+                                string marcaProduto = Console.ReadLine();
+                                p2.Marca = m.ListaMarcas.Find(x => x.NameMarca == marcaProduto);
+                            } while (p2.Marca == null);
+                            Console.WriteLine(p.Cadastrar(p2));
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Você não tem nenhuma marca cadastrada. Cadastre uma marca antes de cadastrar um produto");
+                        }
+
 
 
                         break;
@@ -149,7 +150,7 @@ O QUE VOCÊ DESEJA REALIZAR?
                     case 9:
 
                         Produto p3 = new Produto();
-                        
+
                         Console.WriteLine("Qual produto você deseja deletar??");
                         p3.NameProduto = Console.ReadLine();
                         Console.WriteLine(p.Deletar(p3));
